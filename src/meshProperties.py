@@ -57,6 +57,7 @@ class mesh_shape:
 		    
 		    
 		print('\nExtracting cell2d data and grid index')
+		centroids=[]
 		for index,row in enumerate(tqdm(vorMesh)):#.iterrows(), total= vorMesh.shape[0]):
 		    rowCoords = row['geometry']['coordinates'][0]
 		    rowPoly = Polygon(rowCoords)
@@ -69,6 +70,8 @@ class mesh_shape:
 		    cellArray.append(index)
 		    #add centroid
 		    cellArray += list(rowPoly.centroid.coords[0])
+
+		    centroids.append(tuple(rowPoly.centroid.coords[0]))
 		    #working with vertices number and vertex
 		    vertexIndexList = []
 		    for vertex in rowCoords:
@@ -95,17 +98,21 @@ class mesh_shape:
 		indexedVerticesList = [[index, row[0], row[1]] for index, row in enumerate(uniqueVerticesList)]
 
 		
-		self.disvDict['NCPL'] = len(vorMesh)
-		self.disvDict['NVERT'] = len(uniqueVerticesList)
+		self.disvDict['ncpl'] = len(vorMesh)
+		self.disvDict['nvert'] = len(uniqueVerticesList)
 		self.disvDict['uniqueVerticesList']=uniqueVerticesList
-		self.disvDict['indexedVerticesList']=indexedVerticesList
-		self.disvDict['cell2dArrays'] = cell2dArrays
+		self.disvDict['vertices']=indexedVerticesList
+		self.disvDict['cell2d'] = cell2dArrays
+		self.disvDict['centroids'] =centroids
 
 		
+		#check if you want to save this 
 		self.spatialIndexDict['intervalNumber'] = intervalNumber
 		self.spatialIndexDict['gridXarray'] = list(gridXarray)
 		self.spatialIndexDict['gridYarray'] = list(gridYarray)
 		self.spatialIndexDict['gridIndexList'] = gridIndexList
+
+		return self.disvDict
 
 	def save_properties(self,save_path):
 		with open(save_path, 'w') as outf:

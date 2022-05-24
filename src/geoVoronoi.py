@@ -2,7 +2,7 @@ import numpy as np
 import copy
 import tqdm, time
 from datetime import datetime
-from vorModflow.lloydRelax import Field
+from lloydRelax import Field
 #import geopandas as gpd
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import cdist
