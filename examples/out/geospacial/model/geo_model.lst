@@ -1,0 +1,1633 @@
+                                   MODFLOW 6
+                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL
+                          GROUNDWATER FLOW MODEL (GWF)
+                            VERSION 6.3.0 03/04/2022
+
+   MODFLOW 6 compiled Mar 02 2022 15:29:04 with Intel(R) Fortran Intel(R) 64
+   Compiler Classic for applications running on Intel(R) 64, Version 2021.5.0
+                             Build 20211109_000000
+
+This software has been approved for release by the U.S. Geological 
+Survey (USGS). Although the software has been subjected to rigorous 
+review, the USGS reserves the right to update the software as needed 
+pursuant to further analysis and review. No warranty, expressed or 
+implied, is made by the USGS or the U.S. Government as to the 
+functionality of the software and related material nor shall the 
+fact of release constitute any such warranty. Furthermore, the 
+software is released on condition that neither the USGS nor the U.S. 
+Government shall be held liable for any damages resulting from its 
+authorized or unauthorized use. Also refer to the USGS Water 
+Resources Software User Rights Notice for complete use, copyright, 
+and distribution information.
+
+
+As a work of the United States Government, this USGS product is 
+in the public domain within the United States. You can copy, 
+modify, distribute, and perform the work, even for commercial 
+purposes, all without asking permission. Additionally, USGS 
+waives copyright and related rights in the work worldwide 
+through CC0 1.0 Universal Public Domain Dedication 
+(https://creativecommons.org/publicdomain/zero/1.0/).
+
+The following GNU Lesser General Public License (LGPL) libraries
+are used in this USGS product:
+
+    SPARSKIT version 2.0
+      ilut, luson, and qsplit 
+      (https://www-users.cse.umn.edu/~saad/software/SPARSKIT/)
+
+    RCM - Reverse Cuthill McKee Ordering
+      (https://people.math.sc.edu/Burkardt/f_src/rcm/rcm.html)
+
+    BLAS - Basic Linear Algebra Subprograms Level 1
+      (https://people.math.sc.edu/Burkardt/f_src/blas1_d/blas1_d.html)
+
+    SPARSEKIT - Sparse Matrix Utility Package
+      amux, dperm, dvperm, rperm, and cperm
+      (https://people.sc.fsu.edu/~jburkardt/f77_src/sparsekit/sparsekit.html)
+
+The following BSD-3 License libraries are used in this USGS product:
+
+    Modern Fortran DAG Library
+      Copyright (c) 2018, Jacob Williams
+      All rights reserved.
+      (https://github.com/jacobwilliams/daglib)
+
+MODFLOW 6 compiler options: /Isrc\libmf6core.a.p /Isrc /I..\src
+/Isrc\libmf6_external.a.p /MTd /nologo /warn:general /warn:truncated_source
+/stand:f08 /Zi /traceback /O2 /Zi /fpe:0 /fpp /Qdiag-disable:7416
+/Qdiag-disable:7025 /Qdiag-disable:5268
+/Fdsrc\libmf6core.a.p\Utilities_compilerversion.F90.pdb
+/module:src\libmf6core.a.p
+/Fosrc/libmf6core.a.p/Utilities_compilerversion.F90.obj /c
+
+System command used to initiate simulation:
+../exe/mf6.exe
+
+MODFLOW was compiled using uniform precision.
+
+Real Variables
+  KIND: 8
+  TINY (smallest non-zero value):    2.225074-308
+  HUGE (largest value):    1.797693+308
+  PRECISION: 15
+  BIT SIZE: 64
+
+Integer Variables
+  KIND: 4
+  HUGE (largest value): 2147483647
+  BIT SIZE: 32
+
+Long Integer Variables
+  KIND: 8
+  HUGE (largest value): 9223372036854775807
+  BIT SIZE: 64
+
+Logical Variables
+  KIND: 4
+  BIT SIZE: 32
+ 
+
+ OPENED .\geo_model.disv
+ FILE TYPE:DISV6                  UNIT 1005   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.ic
+ FILE TYPE:IC6                    UNIT 1006   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.npf
+ FILE TYPE:NPF6                   UNIT 1007   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.sto
+ FILE TYPE:STO6                   UNIT 1008   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.evta
+ FILE TYPE:EVT6                   UNIT 1009   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.rch
+ FILE TYPE:RCH6                   UNIT 1010   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.wel
+ FILE TYPE:WEL6                   UNIT 1011   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.riv
+ FILE TYPE:RIV6                   UNIT 1012   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.ghb
+ FILE TYPE:GHB6                   UNIT 1013   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+
+ OPENED .\geo_model.oc
+ FILE TYPE:OC6                    UNIT 1014   STATUS:OLD                 
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+ ACTION:READ                
+
+ NAMEFILE OPTIONS:
+    FLOWS WILL BE SAVED TO BUDGET FILE SPECIFIED IN OUTPUT CONTROL
+    NEWTON-RAPHSON method enabled for the model.
+    NEWTON-RAPHSON UNDER-RELAXATION based on the bottom elevation of the model will be applied to the model.
+
+ DISV -- VERTEX GRID DISCRETIZATION PACKAGE, VERSION 1 : 12/23/2015 - INPUT READ FROM UNIT 1005
+
+
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING DISCRETIZATION OPTIONS
+   MODEL LENGTH UNIT IS UNDEFINED
+ END OF DISCRETIZATION OPTIONS
+
+ PROCESSING DISCRETIZATION DIMENSIONS
+   NLAY = 3
+   NCPL = 488
+   NVERT = 976
+ END OF DISCRETIZATION DIMENSIONS
+
+ PROCESSING GRIDDATA
+ END PROCESSING GRIDDATA
+
+ PROCESSING VERTICES
+   SUCCESSFULLY READ 976 (X,Y) COORDINATES
+   MINIMUM X COORDINATE =     353300.000000000    
+   MAXIMUM X COORDINATE =     356400.000000000    
+   MINIMUM Y COORDINATE =     8547900.00000000    
+   MAXIMUM Y COORDINATE =     8549600.00000000    
+ END PROCESSING VERTICES
+
+ PROCESSING CELL2D
+   SUCCESSFULLY READ 488 CELL2D INFORMATION ENTRIES
+   MINIMUM X CELL CENTER =     353316.889000000    
+   MAXIMUM X CELL CENTER =     356387.315000000    
+   MINIMUM Y CELL CENTER =     8547998.37000000    
+   MAXIMUM Y CELL CENTER =     8549546.57000000    
+   MAXIMUM NUMBER OF CELL2D VERTICES IS 11 FOR CELL 17
+ END PROCESSING VERTICES
+
+ NPF -- NODE PROPERTY FLOW PACKAGE, VERSION 1, 3/30/2015 INPUT READ FROM UNIT 1007
+
+
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+ PROCESSING NPF OPTIONS
+    SPECIFIC DISCHARGE WILL BE CALCULATED AT CELL CENTERS AND WRITTEN TO DATA-SPDIS IN BUDGET FILE WHEN REQUESTED.
+ END OF NPF OPTIONS
+
+ WEL   -- WEL PACKAGE, VERSION 8, 2/22/2014 INPUT READ FROM UNIT 1011
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING WEL OPTIONS
+ END OF WEL OPTIONS
+
+ PROCESSING WEL DIMENSIONS
+    MAXBOUND =       3
+ END OF WEL DIMENSIONS
+
+ RIV   -- RIV PACKAGE, VERSION 8, 2/22/2014 INPUT READ FROM UNIT 1012
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING RIV OPTIONS
+ END OF RIV OPTIONS
+
+ PROCESSING RIV DIMENSIONS
+    MAXBOUND =     187
+ END OF RIV DIMENSIONS
+
+ GHB   -- GHB PACKAGE, VERSION 8, 2/22/2014 INPUT READ FROM UNIT 1013
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING GHB OPTIONS
+ END OF GHB OPTIONS
+
+ PROCESSING GHB DIMENSIONS
+    MAXBOUND =      18
+ END OF GHB DIMENSIONS
+
+ RCH   -- RCH PACKAGE, VERSION 8, 2/22/2014 INPUT READ FROM UNIT 1010
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING RCH OPTIONS
+ END OF RCH OPTIONS
+
+ PROCESSING RCH DIMENSIONS
+    MAXBOUND =     325
+ END OF RCH DIMENSIONS
+
+ EVT   -- EVT PACKAGE, VERSION 8, 2/22/2014 INPUT READ FROM UNIT 1009
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING EVT OPTIONS
+    EVAPOTRANSPIRATION INPUT WILL BE READ AS ARRAYS.
+ END OF EVTA OPTIONS
+
+ IC -- INITIAL CONDITIONS PACKAGE, VERSION 8, 3/28/2015 INPUT READ FROM UNIT 1006
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+ PROCESSING GRIDDATA
+ END PROCESSING GRIDDATA
+ PROCESSING GRIDDATA
+
+                ICELLTYPE = 1 FOR LAYER 1
+
+                ICELLTYPE = 1 FOR LAYER 2
+
+                ICELLTYPE = 0 FOR LAYER 3
+
+                        K =  0.1000000E-04 FOR LAYER 1
+
+                        K =  0.5000000E-03 FOR LAYER 2
+
+                        K =  0.2000000E-03 FOR LAYER 3
+ K33 not provided.  Assuming K33 = K.
+ K22 not provided.  Assuming K22 = K.
+ END PROCESSING GRIDDATA
+
+ STO -- STORAGE PACKAGE, VERSION 1, 5/19/2014 INPUT READ FROM UNIT 1008
+
+
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+ PROCESSING STORAGE OPTIONS
+ END OF STORAGE OPTIONS
+ PROCESSING GRIDDATA
+
+                 ICONVERT = 0
+
+         SPECIFIC STORAGE =  0.1000000E-04
+
+           SPECIFIC YIELD =  0.1500000    
+ END PROCESSING GRIDDATA
+    BINARY GRID INFORMATION WILL BE WRITTEN TO:
+      UNIT NUMBER: 1016
+      FILE NAME: C:\Users\saulm\Documents\jose_Z\github\dev_mode\examples\out\geospacial\model\geo_model.disv.grb
+
+ OPENED C:\Users\saulm\Documents\jose_Z\github\dev_mode\examples\out\geospacial\model\geo_model.disv.grb
+ FILE TYPE:DATA(BINARY)   UNIT 1016   STATUS:REPLACE             
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+ ACTION:READWRITE           
+
+      THE LAST TIME STEP WILL BE PRINTED
+      THE LAST TIME STEP WILL BE PRINTED
+ # File generated by Flopy version 3.3.5 on 05/27/2022 at 14:55:58.
+
+ PROCESSING OC OPTIONS
+
+    BUDGET INFORMATION WILL BE WRITTEN TO:
+      UNIT NUMBER: 1017
+      FILE NAME: geo_model.cbc
+
+ OPENED geo_model.cbc
+ FILE TYPE:DATA(BINARY)   UNIT 1017   STATUS:REPLACE             
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+ ACTION:READWRITE           
+
+    HEAD INFORMATION WILL BE WRITTEN TO:
+      UNIT NUMBER: 1018
+      FILE NAME: geo_model.hds
+
+ OPENED geo_model.hds
+ FILE TYPE:DATA(BINARY)   UNIT 1018   STATUS:REPLACE             
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+ ACTION:READWRITE           
+
+ END OF OC OPTIONS
+
+start timestep kper="1" kstp="1" mode="normal"
+
+
+ BEGIN READING OUTPUT CONTROL FOR STRESS PERIOD 1
+      ALL TIME STEPS WILL BE SAVED
+      ALL TIME STEPS WILL BE SAVED
+
+ END READING OUTPUT CONTROL FOR STRESS PERIOD 1
+
+
+ STRESS PERIOD 1 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+      LAYER OR NODE INDEX = 2
+
+  EVAPOTRANSPIRATION RATE =  0.3805175E-07
+
+         EXTINCTION DEPTH =   1.000000    
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      1
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    1
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   1
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =          79.9504                STO-SS =          79.9504     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =       3.3866E-03                   RIV =       3.3866E-03     RIV_0                            
+                 GHB =           2.8828                   GHB =           2.8828     GHB_0                            
+                 RCH =       3.1552E-02                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =          82.8682              TOTAL IN =          82.8682
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =          82.3700                STO-SS =          82.3700     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =       3.3785E-02                   RIV =       3.3785E-02     RIV_0                            
+                 GHB =           0.2672                   GHB =           0.2672     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =           0.1973                  EVTA =           0.1973     EVTA_0                           
+
+           TOTAL OUT =          82.8682             TOTAL OUT =          82.8682
+
+            IN - OUT =       1.7641E-08              IN - OUT =       1.7641E-08
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  1.0000     1.66667E-02 2.77778E-04 1.15741E-05 3.16881E-08
+ STRESS PERIOD TIME  1.0000     1.66667E-02 2.77778E-04 1.15741E-05 3.16881E-08
+         TOTAL TIME  1.0000     1.66667E-02 2.77778E-04 1.15741E-05 3.16881E-08
+
+
+end timestep
+
+
+start timestep kper="2" kstp="1" mode="normal"
+
+
+ END OF FILE DETECTED IN OUTPUT CONTROL.
+ CURRENT OUTPUT CONTROL SETTINGS WILL BE 
+ REPEATED UNTIL THE END OF THE SIMULATION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD 2 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 2 IS TRANSIENT
+
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      2
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    2
+
+end timestep
+
+
+start timestep kper="2" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      2
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    2
+
+end timestep
+
+
+start timestep kper="2" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      2
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    2
+
+end timestep
+
+
+start timestep kper="2" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      2
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    2
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   2
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75816.6660                STO-SS =       1.5758E-07     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =     9398502.6241                   RIV =           0.5461     RIV_0                            
+                 GHB =    28788150.4781                   GHB =           1.6660     GHB_0                            
+                 RCH =      545221.8056                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =    38807691.5738              TOTAL IN =           2.2437
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10480.5863                STO-SS =       1.1230E-09     STORAGE                          
+                 WEL =     1555200.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    10666910.3195                   RIV =           0.6159     RIV_0                            
+                 GHB =    25643852.6719                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =      935070.2201                  EVTA =       5.4034E-02     EVTA_0                           
+
+           TOTAL OUT =    38811513.7978             TOTAL OUT =           2.2440
+
+            IN - OUT =       -3822.2240              IN - OUT =      -3.1930E-04
+
+ PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.01
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    2
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+
+
+end timestep
+
+
+start timestep kper="3" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 3 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 3 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      3
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    3
+
+end timestep
+
+
+start timestep kper="3" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      3
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    3
+
+end timestep
+
+
+start timestep kper="3" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      3
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    3
+
+end timestep
+
+
+start timestep kper="3" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      3
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    3
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   3
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75842.4539                STO-SS =       2.6863E-08     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    18838427.1556                   RIV =           0.5463     RIV_0                            
+                 GHB =    57576445.0684                   GHB =           1.6660     GHB_0                            
+                 RCH =     1090443.5796                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =    77581158.2574              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10481.9535                STO-SS =       3.5280E-08     STORAGE                          
+                 WEL =     3110400.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    21308097.5822                   RIV =           0.6158     RIV_0                            
+                 GHB =    51287558.0816                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     1868649.8494                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =    77585187.4667             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4029.2093              IN - OUT =      -1.0513E-05
+
+ PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    3
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 3.45600E+07 5.76000E+05  9600.0      400.00      1.0951    
+
+
+end timestep
+
+
+start timestep kper="4" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 4 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 4 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      4
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    4
+
+end timestep
+
+
+start timestep kper="4" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      4
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    4
+
+end timestep
+
+
+start timestep kper="4" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      4
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    4
+
+end timestep
+
+
+start timestep kper="4" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      4
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    4
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   4
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75842.7375                STO-SS =       3.7678E-09     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    28278356.7768                   RIV =           0.5463     RIV_0                            
+                 GHB =    86364740.5057                   GHB =           1.6660     GHB_0                            
+                 RCH =     1635665.3536                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   116354605.3736              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.1279                STO-SS =       1.7675E-09     STORAGE                          
+                 WEL =     4665600.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    31949209.6715                   RIV =           0.6158     RIV_0                            
+                 GHB =    76931262.6443                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     2802220.7719                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   116358775.2156             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4169.8421              IN - OUT =      -6.9717E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    4
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 5.18400E+07 8.64000E+05  14400.      600.00      1.6427    
+
+
+end timestep
+
+
+start timestep kper="5" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 5 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 5 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      5
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    5
+
+end timestep
+
+
+start timestep kper="5" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      5
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    5
+
+end timestep
+
+
+start timestep kper="5" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      5
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    5
+
+end timestep
+
+
+start timestep kper="5" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      5
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    5
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   5
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.0387                STO-SS =       2.1065E-09     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    37718282.5898                   RIV =           0.5463     RIV_0                            
+                 GHB =   115153036.9488                   GHB =           1.6660     GHB_0                            
+                 RCH =     2180887.1276                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   155128049.7049              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =       1.9918E-12     STORAGE                          
+                 WEL =     6220800.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    42590246.8745                   RIV =           0.6158     RIV_0                            
+                 GHB =   102574966.2012                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     3735786.6462                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   155132281.9348             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4232.2299              IN - OUT =      -3.2578E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    5
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 6.91200E+07 1.15200E+06  19200.      800.00      2.1903    
+
+
+end timestep
+
+
+start timestep kper="6" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 6 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 6 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      6
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    6
+
+end timestep
+
+
+start timestep kper="6" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      6
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    6
+
+end timestep
+
+
+start timestep kper="6" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      6
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    6
+
+end timestep
+
+
+start timestep kper="6" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      6
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    6
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   6
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.1013                STO-SS =       1.2297E-09     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    47158214.6764                   RIV =           0.5463     RIV_0                            
+                 GHB =   143941333.4654                   GHB =           1.6660     GHB_0                            
+                 RCH =     2726108.9016                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   193901500.1447              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =     7776000.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    53231275.1758                   RIV =           0.6158     RIV_0                            
+                 GHB =   128218669.6846                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     4669351.8662                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   193905778.9394             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4278.7947              IN - OUT =      -2.4146E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    6
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 8.64000E+07 1.44000E+06  24000.      1000.0      2.7379    
+
+
+end timestep
+
+
+start timestep kper="7" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 7 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 7 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      7
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    7
+
+end timestep
+
+
+start timestep kper="7" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      7
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    7
+
+end timestep
+
+
+start timestep kper="7" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      7
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    7
+
+end timestep
+
+
+start timestep kper="7" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      7
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    7
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   7
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.1591                STO-SS =       1.0191E-09     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    56598153.6204                   RIV =           0.5463     RIV_0                            
+                 GHB =   172729630.0552                   GHB =           1.6660     GHB_0                            
+                 RCH =     3271330.6756                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   232674957.5102              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =     9331200.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    63872295.3368                   RIV =           0.6158     RIV_0                            
+                 GHB =   153862373.0948                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     5602916.5724                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   232679267.2169             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4309.7067              IN - OUT =      -1.6420E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    7
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.03680E+08 1.72800E+06  28800.      1200.0      3.2854    
+
+
+end timestep
+
+
+start timestep kper="8" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 8 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 8 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      8
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    8
+
+end timestep
+
+
+start timestep kper="8" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      8
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    8
+
+end timestep
+
+
+start timestep kper="8" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      8
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    8
+
+end timestep
+
+
+start timestep kper="8" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      8
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    8
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   8
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.1841                STO-SS =       9.1376E-10     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    66038095.6906                   RIV =           0.5463     RIV_0                            
+                 GHB =   201517926.6716                   GHB =           1.6660     GHB_0                            
+                 RCH =     3816552.4496                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   271448417.9959              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =    10886400.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    74513312.3378                   RIV =           0.6158     RIV_0                            
+                 GHB =   179506076.4784                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     6536481.0812                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   271452752.1103             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4334.1144              IN - OUT =      -1.3124E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    8
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.20960E+08 2.01600E+06  33600.      1400.0      3.8330    
+
+
+end timestep
+
+
+start timestep kper="9" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 9 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 9 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD      9
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD    9
+
+end timestep
+
+
+start timestep kper="9" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD      9
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD    9
+
+end timestep
+
+
+start timestep kper="9" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD      9
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD    9
+
+end timestep
+
+
+start timestep kper="9" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD      9
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD    9
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD   9
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.2016                STO-SS =       8.4297E-10     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    75478039.8985                   RIV =           0.5463     RIV_0                            
+                 GHB =   230306223.3050                   GHB =           1.6660     GHB_0                            
+                 RCH =     4361774.2236                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   310221880.6288              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =    12441600.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    85154327.2738                   RIV =           0.6158     RIV_0                            
+                 GHB =   205149779.8450                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     7470045.4614                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   310226234.7931             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4354.1643              IN - OUT =      -1.0834E-06
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD    9
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.38240E+08 2.30400E+06  38400.      1600.0      4.3806    
+
+
+end timestep
+
+
+start timestep kper="10" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 10 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 10 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     10
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD   10
+
+end timestep
+
+
+start timestep kper="10" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     10
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD   10
+
+end timestep
+
+
+start timestep kper="10" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     10
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD   10
+
+end timestep
+
+
+start timestep kper="10" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     10
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD   10
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD  10
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.2149                STO-SS =       7.0015E-10     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    84917985.7313                   RIV =           0.5463     RIV_0                            
+                 GHB =   259094519.9508                   GHB =           1.6660     GHB_0                            
+                 RCH =     4906995.9977                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   348995344.8946              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =    13996800.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =    95795340.6820                   RIV =           0.6158     RIV_0                            
+                 GHB =   230793483.1992                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     8403609.7468                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   348999715.8409             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4370.9463              IN - OUT =      -9.0999E-07
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD   10
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.55520E+08 2.59200E+06  43200.      1800.0      4.9281    
+
+
+end timestep
+
+
+start timestep kper="11" kstp="1" mode="normal"
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD 11 IS REPEATED USING SETTINGS FROM A PREVIOUS STRESS PERIOD.
+
+
+ STRESS PERIOD 11 IS TRANSIENT
+
+
+ REUSING WELS FROM LAST STRESS PERIOD
+
+ REUSING RIVS FROM LAST STRESS PERIOD
+
+ REUSING GHBS FROM LAST STRESS PERIOD
+
+ REUSING RCHS FROM LAST STRESS PERIOD
+
+ REUSING EVTS FROM LAST STRESS PERIOD
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      1, STRESS PERIOD     11
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    1, STRESS PERIOD   11
+
+end timestep
+
+
+start timestep kper="11" kstp="2" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      2, STRESS PERIOD     11
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    2, STRESS PERIOD   11
+
+end timestep
+
+
+start timestep kper="11" kstp="3" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      3, STRESS PERIOD     11
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    3, STRESS PERIOD   11
+
+end timestep
+
+
+start timestep kper="11" kstp="4" mode="normal"
+
+ UBDSV1 SAVING           STO-SS ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV1 SAVING     FLOW-JA-FACE ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING       DATA-SPDIS IN MODEL GEO_MODEL        PACKAGE NPF             CONNECTED TO MODEL GEO_MODEL        PACKAGE NPF              ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING              WEL IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE WEL_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING              RIV IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RIV_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING              GHB IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE GHB_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING              RCH IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE RCH_0            ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+ UBDSV06 SAVING            EVTA  IN MODEL GEO_MODEL        PACKAGE GEO_MODEL       CONNECTED TO MODEL GEO_MODEL        PACKAGE EVTA_0           ON UNIT   1017 AT TIME STEP      4, STRESS PERIOD     11
+
+ HEAD WILL BE SAVED ON UNIT 1018 AT END OF TIME STEP    4, STRESS PERIOD   11
+
+
+  VOLUME BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    4, STRESS PERIOD  11
+  ---------------------------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUME      L**3       RATES FOR THIS TIME STEP      L**3/T          PACKAGE NAME    
+     ------------------                 ------------------------                     ----------------
+
+           IN:                                      IN:
+           ---                                      ---
+              STO-SS =       75843.2245                STO-SS =       4.6538E-10     STORAGE                          
+                 WEL =           0.0000                   WEL =           0.0000     WEL_0                            
+                 RIV =    94357932.8131                   RIV =           0.5463     RIV_0                            
+                 GHB =   287882816.6059                   GHB =           1.6660     GHB_0                            
+                 RCH =     5452217.7717                   RCH =       3.1552E-02     RCH_0                            
+                EVTA =           0.0000                  EVTA =           0.0000     EVTA_0                           
+
+            TOTAL IN =   387768810.4152              TOTAL IN =           2.2438
+
+          OUT:                                     OUT:
+          ----                                     ----
+              STO-SS =       10482.2129                STO-SS =           0.0000     STORAGE                          
+                 WEL =    15552000.0000                   WEL =       9.0000E-02     WEL_0                            
+                 RIV =   106436352.9349                   RIV =           0.6158     RIV_0                            
+                 GHB =   256437186.5441                   GHB =           1.4840     GHB_0                            
+                 RCH =           0.0000                   RCH =           0.0000     RCH_0                            
+                EVTA =     9337173.9604                  EVTA =       5.4026E-02     EVTA_0                           
+
+           TOTAL OUT =   387773195.6524             TOTAL OUT =           2.2438
+
+            IN - OUT =       -4385.2372              IN - OUT =      -7.8460E-07
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    4 IN STRESS PERIOD   11
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH 4.32000E+06  72000.      1200.0      50.000     0.13689    
+ STRESS PERIOD TIME 1.72800E+07 2.88000E+05  4800.0      200.00     0.54757    
+         TOTAL TIME 1.72800E+08 2.88000E+06  48000.      2000.0      5.4757    
+
+
+end timestep
+
