@@ -1,7 +1,7 @@
 import os
 import sys
 #adding path to source directory
-sys.path.insert(0, 'd:/Proyectos_GitHub/dev_mode/src')
+sys.path.insert(0, '../src')
 
 from geoVoronoi import createVoronoi
 
@@ -9,7 +9,7 @@ from geoVoronoi import createVoronoi
 vorMesh = createVoronoi()
 
 #Define base refinement and refinement levels
-vorMesh.defineParameters(maxRef = 500, minRef=50, stages=5)
+vorMesh.defineParameters(maxRef = 500, minRef=50, stages=25)
 
 #Open limit layers and refinement definition layers
 vorMesh.addLimit('basin','../examples/In/shp/Angascancha_Basin_Extension.shp')
